@@ -1,0 +1,67 @@
+<style lang="less">
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+</style>
+<template>
+    <view class="container">
+        <view class="userinfo">
+            <image class="userinfo-avatar" src="{{ userInfo.avatarUrl }}" background-size="cover"/>
+            <view class="userinfo-nickname">{{ userInfo.nickName }}</view>
+        </view>
+        <view>欢迎来到重庆</view>
+        <view @tap="toast">显示toast组件</view>
+
+    </view>
+</template>
+
+<script>
+import wepy from "wepy";
+
+export default class Index extends wepy.page {
+  config = {
+    navigationBarTitleText: "首页"
+  };
+  components = {};
+
+  data = {
+    userInfo: {
+      nickName: "加载中..."
+    }
+  };
+
+  methods = {
+    toast() {
+      wepy.showToast({
+        title: "成功",
+        icon: "success",
+        image: "../images/me.png",
+        duration: 2000
+      });
+    }
+  };
+
+  onLoad() {
+    let self = this;
+    this.$parent.getUserInfo(function(userInfo) {
+      if (userInfo) {
+        self.userInfo = userInfo;
+      }
+
+      self.$apply();
+    });
+  }
+}
+</script>
