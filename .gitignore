@@ -1,0 +1,17 @@
+
+#.gitignore
+.idea/
+dist/
+node_modules/
+#package-lock.json
+#package.json
+#src/
+#wepy.config.js
+#wepy.config.js
+.DS_Store
+#.editorconfig
+#.eslintignore
+#.eslintrc.js
+#.npmignore
+#.wepycache
+#.wepyignore
